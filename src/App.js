@@ -28,6 +28,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input
+          className="search-box"
+          type="search"
+          placeholder="search profile"
+          onChange={(event) => {
+            console.log(event.target.value);
+          }}
+        />
         {this.state.profiles.map((profile) => {
           return (
             <div key={profile.id}>
