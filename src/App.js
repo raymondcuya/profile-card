@@ -34,6 +34,14 @@ class App extends Component {
           placeholder="search profile"
           onChange={(event) => {
             console.log(event.target.value);
+            const searchString = event.target.value.toLocaleLowerCase();
+            const filteredProfiles = this.state.profiles.filter((profile) => {
+              return profile.name.includes(searchString);
+            });
+
+            this.setState(() => {
+              return { profiles: filteredProfiles };
+            });
           }}
         />
         {this.state.profiles.map((profile) => {
