@@ -26,23 +26,29 @@ class App extends Component {
       );
   }
 
-  render() {
-    const filteredProfiles = this.state.profiles.filter((profile) => {
-      return profile.name.toLocaleLowerCase().includes(this.state.searchField);
+  onSearchChange = (event) => {
+    const searchField = event.target.value.toLowerCase();
+
+    this.setState(() => {
+      return { searchField };
     });
+  };
+
+  render() {
+    const { profiles, searchField } = this.state;
+    const { onSearchChange } = this;
+
+    const filteredProfiles = profiles.filter((profile) => {
+      return profile.name.toLocaleLowerCase().includes(searchField);
+    });
+
     return (
       <div className="App">
         <input
           className="search-box"
           type="search"
           placeholder="search profile"
-          onChange={(event) => {
-            const searchField = event.target.value.toLowerCase();
-
-            this.setState(() => {
-              return { searchField };
-            });
-          }}
+          onChange={onSearchChange}
         />
         {filteredProfiles.map((profile) => {
           return (
