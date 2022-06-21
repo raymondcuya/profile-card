@@ -7,6 +7,7 @@ class App extends Component {
     super();
     this.state = {
       profiles: [],
+      searchField: '',
     };
   }
 
@@ -26,6 +27,9 @@ class App extends Component {
   }
 
   render() {
+    const filteredProfiles = this.state.profiles.filter((profile) => {
+      return profile.name.toLocaleLowerCase().includes(this.state.searchField);
+    });
     return (
       <div className="App">
         <input
@@ -33,18 +37,14 @@ class App extends Component {
           type="search"
           placeholder="search profile"
           onChange={(event) => {
-            console.log(event.target.value);
-            const searchString = event.target.value.toLocaleLowerCase();
-            const filteredProfiles = this.state.profiles.filter((profile) => {
-              return profile.name.includes(searchString);
-            });
+            const searchField = event.target.value.toLowerCase();
 
             this.setState(() => {
-              return { profiles: filteredProfiles };
+              return { searchField };
             });
           }}
         />
-        {this.state.profiles.map((profile) => {
+        {filteredProfiles.map((profile) => {
           return (
             <div key={profile.id}>
               <h1>{profile.name}</h1>
