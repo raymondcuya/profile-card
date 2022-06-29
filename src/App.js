@@ -51,15 +51,7 @@ class App extends Component {
           placeholder="search profile"
           onChange={onSearchChange}
         />
-        {/* {filteredProfiles.map((profile) => {
-          return (
-            <div key={profile.id}>
-              <h1>{profile.name}</h1>
-            </div>
-          );
-        })} */}
-        <CardList />
-        <h1></h1>
+        <CardList profiles={profiles} />
       </div>
     );
   }
