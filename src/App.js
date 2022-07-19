@@ -1,14 +1,16 @@
-import './App.css';
+import { useState } from 'react';
+
 import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
 
-const App = () => {
-  const onSearchChange = (event) => {
-    const searchField = event.target.value.toLowerCase();
+import './App.css';
 
-    this.setState(() => {
-      return { searchField };
-    });
+const App = () => {
+  const [searchField, setSearchField] = useState('');
+
+  const onSearchChange = (event) => {
+    const searchFieldString = event.target.value.toLowerCase();
+    setSearchField(searchFieldString);
   };
 
   return (
